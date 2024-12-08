@@ -24,9 +24,10 @@ async function main() {
                 .extract({
                     left: coords.x,
                     top: coords.y,
-                    width: coords.width,
-                    height: coords.height
+                    width: coords.rotation == 90 ? coords.height : coords.width,
+                    height: coords.rotation == 90 ? coords.width : coords.height
                 })
+                .rotate(-coords.rotation ?? 0)
                 .toFile(path.join(OUTPUT_DIR, `${textureName}.png`));
         }
 
